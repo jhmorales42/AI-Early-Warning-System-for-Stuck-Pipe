@@ -1,25 +1,22 @@
 # AI-Early-Warning-System-for-Stuck-Pipe
 AI-driven Early Warning System (EWS) for Stuck Pipe prevention using **Random Forest**.
+
 ## Overview
-This project implements a Machine Learning solution using the Random Forest algorithm to monitor real-time drilling operations. By analyzing telemetry data (Torque, ROP, MSE, Friction Factors), the system detects the subtle onset of "Stuck Pipe" events (e.g., poor hole cleaning, differential sticking) before they become critical.
+This project implements a Machine Learning solution using the **Random Forest** algorithm to monitor drilling operations. By analyzing telemetry data (Torque, ROP, MSE, Friction Factors), the system detects the subtle onset of "Stuck Pipe" events (poor hole cleaning, differential sticking) before they become critical.
 
 ## Technical Approach
-**Physics-Based Feature Engineering**: The model ingests raw sensor data and computes advanced metrics such as Friction Factor and Torque Trends to isolate mechanical friction from normal drilling resistance.
-
-## Dual-Stage Architecture:
-
-**Training Module**: Learns from historical offset well data (stuckpipe_brain.joblib).
-
-**Production Monitor**: Simulates real-time inference on new wells to validate performance.
-
-**Predictive Analytics**: The system successfully detected the stuck pipe event with a lead time of **37 hours**, allowing sufficient time for remedial actions (e.g., wiper trips, mud conditioning).
-
-**Economic Impact**: Automatically calculates potential NPT (Non-Productive Time) savings based on rig daily rates.
+1.  **Physics-Based Feature Engineering**: The model ingests raw sensor data and computes advanced metrics such as *Friction Factor* and *Torque Trends* to isolate mechanical friction from normal drilling resistance.
+2.  **Rigorous Time-Series Validation**: Unlike standard models, this system uses **`TimeSeriesSplit`** and strict chronological Train/Test separation to prevent data leakage, ensuring the model respects the temporal nature of drilling data.
+3.  **Automated Hyperparameter Tuning**: Implements **`GridSearchCV`** to mathematically optimize the Random Forest configuration (n_estimators, max_depth) for the best balance between sensitivity and stability.
+4.  **Dual-Stage Architecture**:
+    * **Training Module:** Learns from historical offset well data using optimized parameters.
+    * **Production Monitor:** Simulates inference on new wells to validate performance in a "blind" environment.
 
 ## Key Results
-**Lead Time Gained**: 37.1 hours (**1.5 days**) of advance warning in production simulation.
-
-**Precision**: 100% precision on "Risk" alerts (Zero False Alarms), ensuring high operational trust.
+* **Lead Time Gained**: **37.1 hours (1.5 days)** of advance warning in production simulation.
+* **Precision**: **100%** on "Risk" alerts (Zero False Alarms). The model prioritizes high confidence to prevent alarm fatigue.
 
 ## Requirements
-To run this project, install the dependencies: pip install -r requirements.txt
+To run this project, install the dependencies:
+```bash
+pip install -r requirements.txt
