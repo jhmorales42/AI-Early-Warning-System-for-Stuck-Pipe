@@ -6,8 +6,8 @@ This project implements a Machine Learning solution using the **Random Forest** 
 
 ## Technical Approach
 1.  **Physics-Based Feature Engineering**: The model ingests raw sensor data and computes advanced metrics such as *Friction Factor* and *Torque Trends* to isolate mechanical friction from normal drilling resistance.
-2.  **Rigorous Time-Series Validation**: Unlike standard models, this system uses **`TimeSeriesSplit`** and strict chronological Train/Test separation to prevent data leakage, ensuring the model respects the temporal nature of drilling data.
-3.  **Automated Hyperparameter Tuning**: Implements **`GridSearchCV`** to mathematically optimize the Random Forest configuration (n_estimators, max_depth) for the best balance between sensitivity and stability.
+2.  **Rigorous Time-Series Validation**: Unlike standard models, this system uses **TimeSeriesSplit** and strict chronological Train/Test separation to prevent data leakage, ensuring the model respects the temporal nature of drilling data.
+3.  **Automated Hyperparameter Tuning**: Implements **GridSearchCV** to mathematically optimize the Random Forest configuration (n_estimators, max_depth) for the best balance between sensitivity and stability.
 4.  **Dual-Stage Architecture**:
     * **Training Module:** Learns from historical offset well data using optimized parameters.
     * **Production Monitor:** Simulates inference on new wells to validate performance in a "blind" environment.
